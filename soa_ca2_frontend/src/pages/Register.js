@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { fetchRegister } from '../services/api';
 
 const Register = () => {
@@ -8,35 +7,50 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    const [message, setMessage] = useState(null);
     const [error, setError] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setError('');
+        setMessage(null);
         try{
             const response = await fetchRegister('api/Auth/register', { name, email, username, password, role });
-            console.log(response);
+            console.log(response.message);
+            console.log(response.data);
 
-            if (response.message !== null) {
-                localStorage.setItem('isLoggedIn', true);
-                setIsLoggedIn(true);
-                console.log('Registered successfully:', response);
-            } else {
-                setError('Register failed. Please try again.');
-            }
-
+            switch(response.message){
+                case 'Admin registered successfully.':
+                    setMessage('Admin registered successfully.');
+                    break;
+                case 'User registered successfully.':
+                    setMessage('User registered successfully.');
+                    break;
+                default:
+                    setMessage('Error');
+                    break;
+            };
         }catch(error){
-            setError('Registration failed. Please try again.');
             console.error('Error during registration:', error);
+            console.log(error.response.data);
+            setError(error.response.data);
         }
     };
 
-    if (isLoggedIn) {
+    if (message !== null) {
         return (
-            console.log('Registered successfully'),
-            <div>
-                <p>User added</p>
+            <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', textAlign: 'center' }}>
+                <p>{message}</p>
+                <button onClick={() => {
+                    setMessage(null)
+                    setEmail('')
+                    setName('')
+                    setPassword('')
+                    setUsername('')
+                    setRole('')
+                    setError('')
+                }
+                    
+                    }>Go back</button>
             </div>
         );
     }
@@ -107,6 +121,7 @@ const Register = () => {
                         cursor: 'pointer',
                     }}>Register</button>
             </form>
+            {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
         </div>
     );
 };

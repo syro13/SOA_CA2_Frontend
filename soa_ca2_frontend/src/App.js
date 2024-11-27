@@ -13,6 +13,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('role');
     navigate('/login');
   };
 
@@ -30,12 +31,14 @@ function App() {
         </ul>
         </div>
         <div class="loginContainer">
-        {localStorage.getItem('isLoggedIn') ? (
-          <button className="btn" onClick={handleLogout}>Logout</button>
+        {localStorage.getItem('isLoggedIn') && localStorage.getItem('role') === "Admin" ? (
+          <div>
+              <button className="btn" onClick={handleLogout}>Logout</button>
+              <Link to="/register" className="btn">Register</Link>
+          </div>
         ):(
           <div>
           <Link to="/login" className="btn">Login</Link>
-          <Link to="/register" className="btn">Register</Link>
           </div>
         )}
         </div>

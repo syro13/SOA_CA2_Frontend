@@ -26,6 +26,7 @@ function Login() {
 
             // Handle success
             if (response.token) {
+                localStorage.setItem('role', role);
                 localStorage.setItem('authToken', response.token);
                 localStorage.setItem('isLoggedIn', 'true'); // Save login state
                 setIsLoggedIn(true); // Update React state
