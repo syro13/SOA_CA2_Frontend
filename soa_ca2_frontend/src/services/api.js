@@ -18,8 +18,24 @@ const API_KEY = 'S3cR3tK3yForMyAPI@2024*EducationCourse#Management';
 //   }
 // };
 
-// Function to post data
+// Function to Login
 export const fetchLogin = async (endpoint, data) => {
+  try {
+    console.log('Posting data:', data);
+    const response = await axios.post(`${API_BASE_URL}/${endpoint}`, data, {
+      headers: {
+        'apiKey': `${API_KEY}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error posting data:', error);
+    throw error;
+  }
+};
+
+// Function to Register
+export const fetchRegister = async (endpoint, data) => {
   try {
     console.log('Posting data:', data);
     const response = await axios.post(`${API_BASE_URL}/${endpoint}`, data, {

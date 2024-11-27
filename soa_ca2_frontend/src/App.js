@@ -4,6 +4,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Courses from './pages/Courses';
+import Register from './pages/Register';
 import './App.css';
 
 function App() {
@@ -32,7 +33,10 @@ function App() {
         {localStorage.getItem('isLoggedIn') ? (
           <button className="btn" onClick={handleLogout}>Logout</button>
         ):(
+          <div>
           <Link to="/login" className="btn">Login</Link>
+          <Link to="/register" className="btn">Register</Link>
+          </div>
         )}
         </div>
       </div>
@@ -42,6 +46,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/courses" element={<Courses />} />
       </Routes>
     </div>
