@@ -50,7 +50,7 @@ function Login() {
     }
 
     return (
-        <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', textAlign: 'center' }}>
+        <div className="main-container">
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <div style={{ marginBottom: '10px' }}>

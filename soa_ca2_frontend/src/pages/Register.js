@@ -38,7 +38,7 @@ const Register = () => {
 
     if (message !== null) {
         return (
-            <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', textAlign: 'center' }}>
+            <div className="main-container">
                 <p>{message}</p>
                 <button onClick={() => {
                     setMessage(null)
@@ -56,7 +56,7 @@ const Register = () => {
     }
 
     return (
-        <div className="register-container" style={{ maxWidth: '400px', margin: 'auto', padding: '20px', textAlign: 'center' }}>
+        <div className="main-container">
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
                 <div style={{ marginBottom: '10px' }}>
