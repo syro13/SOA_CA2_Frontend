@@ -28,6 +28,11 @@ function App() {
           <li>
             <Link to="/about">About</Link>
           </li>
+          {localStorage.getItem('isLoggedIn') ? (
+            <li>
+              <Link to="/courses">Courses</Link>
+            </li>
+          ) : null}
         </ul>
         </div>
         <div class="loginContainer">
