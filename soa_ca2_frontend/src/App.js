@@ -1,20 +1,24 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import About from './pages/About';
-
-function Home() {
-  return (
-    <div>
-      <h1>Home Page</h1>
-      <p>This is the Home Page.</p>
-    </div>
-  );
-}
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Courses from './pages/Courses';
+import './App.css';
 
 function App() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('isLoggedIn');
+    navigate('/login');
+  };
+
   return (
     <div>
-      <nav>
+      <div class="nav" style={{backgroundColor:'red'}}>
+        <div class="nav-links">
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -23,11 +27,22 @@ function App() {
             <Link to="/about">About</Link>
           </li>
         </ul>
-      </nav>
+        </div>
+        <div class="loginContainer">
+        {localStorage.getItem('isLoggedIn') ? (
+          <button className="btn" onClick={handleLogout}>Logout</button>
+        ):(
+          <Link to="/login" className="btn">Login</Link>
+        )}
+        </div>
+      </div>
+      
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/courses" element={<Courses />} />
       </Routes>
     </div>
   );
