@@ -96,3 +96,19 @@ export const fetchDeleteCourses = async (endpoint, token, id) => {
     throw error;
   }
 };
+
+// Function to edit data
+export const fetchEditCourses = async (endpoint, token, data) => {
+  try {
+    console.log('Posting data:', data);
+    await axios.put(`${API_BASE_URL}/${endpoint}`, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'apiKey': `${API_KEY}`
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
