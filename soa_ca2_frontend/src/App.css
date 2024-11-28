@@ -61,3 +61,38 @@
   padding: 20px; 
   text-align: center;
 }
+
+/* cards */
+.cards-container{
+   display: flex;
+   margin-top: 10px;
+   flex-wrap: wrap;
+   gap: 20px;
+   justify-content: center;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex: 1 1 calc(33% - 20px);
+  max-width: 300px; 
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+.card p {
+  margin: 5px 0;
+}
