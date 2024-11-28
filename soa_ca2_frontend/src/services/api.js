@@ -81,3 +81,18 @@ export const fetchAddCourses = async (endpoint, token, data) => {
     throw error;
   }
 };
+
+// Function to delete data
+export const fetchDeleteCourses = async (endpoint, token, id) => {
+  try {
+    await axios.delete(`${API_BASE_URL}/${endpoint}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'apiKey': `${API_KEY}`
+      }
+    });
+  } catch (error) {
+    console.error('Error deleting data:', error);
+    throw error;
+  }
+};

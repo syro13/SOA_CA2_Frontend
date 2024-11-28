@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { fetchCourses } from '../services/api';
+import { fetchCourses, fetchDeleteCourses } from '../services/api';
 
 Modal.setAppElement('#root');
 
@@ -48,6 +48,22 @@ const Courses = () => {
     window.location.href = '/add-course';
   };
 
+  const handleEditCourse = (id) => {
+    console.log('Editing course:', id);
+    window.location.href = `/edit-course/${id}`;
+  };
+
+  const handleDeleteCourse = async (id) => {
+    console.log('Deleting course:', id);
+    try {
+      await fetchDeleteCourses(`api/Courses/${id}`, localStorage.getItem('authToken'));
+      getCourses();
+    } catch (error) {
+      console.error('Error deleting course:', error);
+    }
+  }
+
+
   return (
     <div className="main-container">
       <h1>Courses Page</h1>
@@ -65,7 +81,11 @@ const Courses = () => {
             <p>{course.description}</p>
             <p><strong>Credits:</strong> {course.credits}</p>
             {localStorage.getItem('role') === 'Admin' ? (
+              <div>
               <button className='btn' onClick={() => handleViewCourse(course.courseId)}>View Course</button>
+              <button className='btn' onClick={() => handleEditCourse(course.courseId)}>Edit Course</button>
+              <button className='btn' onClick={() => handleDeleteCourse(course.courseId)}>Delete Course</button>
+              </div>
             ) : null
               }
           </div>
