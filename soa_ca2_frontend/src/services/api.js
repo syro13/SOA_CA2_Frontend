@@ -49,3 +49,19 @@ export const fetchRegister = async (endpoint, data) => {
     throw error;
   }
 };
+
+// Function to fetch data
+export const fetchCourses = async (endpoint, token) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/${endpoint}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'apiKey': `${API_KEY}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
