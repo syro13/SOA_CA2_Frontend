@@ -65,3 +65,19 @@ export const fetchCourses = async (endpoint, token) => {
     throw error;
   }
 };
+
+// Function to fetch data
+export const fetchAddCourses = async (endpoint, token, data) => {
+  try {
+    console.log('Posting data:', data);
+    await axios.post(`${API_BASE_URL}/${endpoint}`, data, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'apiKey': `${API_KEY}`
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
