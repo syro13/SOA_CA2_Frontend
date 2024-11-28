@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { fetchCourses } from '../services/api'; // Adjust the import path as needed
+import { fetchCourses } from '../services/api';
 
-Modal.setAppElement('#root'); // Set the app element for accessibility
+Modal.setAppElement('#root');
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -39,16 +39,23 @@ const Courses = () => {
     setSelectedCourse(null);
   };
 
-  // useEffect(() => {
-  //   getCourses();
-  // }, []);
+  useEffect(() => {
+    getCourses();
+  }, []);
 
+  const handleAddCourse = () => {
+    console.log('Adding course');
+    window.location.href = '/add-course';
+  };
 
   return (
     <div className="main-container">
       <h1>Courses Page</h1>
       <p>Welcome to the Courses Page!</p>
-      <button className='btn' onClick={getCourses}>Get Courses</button>
+      {localStorage.getItem('role') === 'Admin' ? (
+              <button className='btn' onClick={handleAddCourse}>Add Course</button>
+            ) : null
+              }
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <div className='cards-container'>
