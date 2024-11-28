@@ -13,6 +13,7 @@ function AddCourse() {
         try {
             const response = await fetchAddCourses('api/Courses', localStorage.getItem('authToken'), {title, description, credits});
             setCourses(response);
+            window.location.href = `/courses`;
           } catch (error) {
             setError('Error fetching courses');
           }
