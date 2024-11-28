@@ -36,15 +36,15 @@ function App() {
         </ul>
         </div>
         <div class="loginContainer">
-        {localStorage.getItem('isLoggedIn') && localStorage.getItem('role') === "Admin" ? (
-          <div>
+        {localStorage.getItem('isLoggedIn') ? (
               <button className="btn" onClick={handleLogout}>Logout</button>
-              <Link to="/register" className="btn">Register</Link>
-          </div>
         ):(
-          <div>
-          <Link to="/login" className="btn">Login</Link>
-          </div>
+              <Link to="/login" className="btn">Login</Link>
+        )}
+        {localStorage.getItem('role') === 'Admin' ? (
+              <Link to="/register" className="btn">Register</Link>
+        ):(
+              null
         )}
         </div>
       </div>
