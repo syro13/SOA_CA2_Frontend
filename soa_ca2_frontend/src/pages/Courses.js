@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { fetchCourses, fetchDeleteCourses } from '../services/api';
+import { fetch, fetchDelete } from '../services/api';
 
 Modal.setAppElement('#root');
 
@@ -14,7 +14,7 @@ const Courses = () => {
   const getCourses = async () => {
     setLoading(true);
     try {
-      const response = await fetchCourses('api/Courses', localStorage.getItem('authToken'));
+      const response = await fetch('api/Courses', localStorage.getItem('authToken'));
       setCourses(response);
     } catch (error) {
       setError('Error fetching courses');
@@ -26,7 +26,7 @@ const Courses = () => {
   const handleViewCourse = async (id) => {
     console.log('Viewing course:', id);
     try {
-      const response = await fetchCourses(`api/Courses/${id}`, localStorage.getItem('authToken'));
+      const response = await fetch(`api/Courses/${id}`, localStorage.getItem('authToken'));
       setSelectedCourse(response);
       setModalIsOpen(true);
     } catch (error) {
@@ -56,7 +56,7 @@ const Courses = () => {
   const handleDeleteCourse = async (id) => {
     console.log('Deleting course:', id);
     try {
-      await fetchDeleteCourses(`api/Courses/${id}`, localStorage.getItem('authToken'));
+      await fetchDelete(`api/Courses/${id}`, localStorage.getItem('authToken'));
       getCourses();
     } catch (error) {
       console.error('Error deleting course:', error);

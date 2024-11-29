@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import { fetchAddCourses } from '../services/api';
+import { fetchAdd } from '../services/api';
 
 function AddCourse() {
     const [title, setTitle] = useState('');
     const [description, setDesc] = useState('');
     const [credits, setCredits] = useState('');
-    const [courses, setCourses] = useState([]);
-    const [error, setError] = useState('');
 
     const handleAddCourse = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetchAddCourses('api/Courses', localStorage.getItem('authToken'), {title, description, credits});
-            setCourses(response);
+            await fetchAdd('api/Courses', localStorage.getItem('authToken'), {title, description, credits});
             window.location.href = `/courses`;
           } catch (error) {
-            setError('Error fetching courses');
+            console.log('Error fetching courses:', error);
           }
     }
 

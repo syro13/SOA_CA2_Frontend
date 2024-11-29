@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCourses, fetchEditCourses } from '../services/api';
+import { fetch, fetchEdit } from '../services/api';
 
 function EditCourse() {
     const { id } = useParams();
     const [title, setTitle] = useState('');
     const [description, setDesc] = useState('');
     const [credits, setCredits] = useState('');
-    const [courses, setCourses] = useState([]);
-    const [error, setError] = useState('');
 
     useEffect(() => {
         const getCourse = async () => {
           try {
-            const response = await fetchCourses(`api/Courses/${id}`, localStorage.getItem('authToken'));
+            const response = await fetch(`api/Courses/${id}`, localStorage.getItem('authToken'));
             setTitle(response.title);
             setDesc(response.description);
             setCredits(response.credits);
           } catch (error) {
-            setError('Error fetching course details');
+            console.error('Error fetching courses:', error);
           }
         };
     
@@ -28,10 +26,10 @@ function EditCourse() {
     const handleEditCourse = async (e) => {
         e.preventDefault();
         try {
-            await fetchEditCourses(`api/Courses/${id}`, localStorage.getItem('authToken'), {title, description, credits});
+            await fetchEdit(`api/Courses/${id}`, localStorage.getItem('authToken'), {title, description, credits});
             window.location.href = `/courses`;
           } catch (error) {
-            setError('Error fetching courses');
+            console.log('Error fetching courses:', error);
           }
     }
 
