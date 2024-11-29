@@ -7,6 +7,9 @@ import Courses from './pages/Courses';
 import Register from './pages/Register';
 import AddCourse from './pages/AddCourse';
 import EditCourse from './pages/EditCourse';
+import Instructors from './pages/Instructors';
+import AddInstructor from './pages/AddInstructor';
+import EditInstructor from './pages/EditInstructor';
 import './App.css';
 
 function App() {
@@ -35,6 +38,11 @@ function App() {
               <Link to="/courses">Courses</Link>
             </li>
           ) : null}
+          {(localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') ? (
+              <li>
+                <Link to="/instructors">Instructors</Link>
+              </li>
+              ) : null}
         </ul>
         </div>
         <div class="loginContainer">
@@ -60,6 +68,9 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/add-course" element={<AddCourse />} />
         <Route path="/edit-course/:id" element={<EditCourse />} />
+        <Route path="/instructors" element={<Instructors />} />
+        <Route path="/add-instructor" element={<AddInstructor />} />
+        <Route path="/edit-instructor/:id" element={<EditInstructor />} />
       </Routes>
     </div>
   );
