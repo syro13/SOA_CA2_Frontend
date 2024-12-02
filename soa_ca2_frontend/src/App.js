@@ -10,6 +10,9 @@ import EditCourse from './pages/EditCourse';
 import Instructors from './pages/Instructors';
 import AddInstructor from './pages/AddInstructor';
 import EditInstructor from './pages/EditInstructor';
+import Students from './pages/Students';
+import AddStudent from './pages/AddStudent';
+import EditStudent from './pages/EditStudent';
 import './App.css';
 
 function App() {
@@ -36,6 +39,7 @@ function App() {
           {localStorage.getItem('isLoggedIn') ? (
             <li>
               <Link to="/courses">Courses</Link>
+              <Link to="/students">Students</Link>
             </li>
           ) : null}
           {(localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') ? (
@@ -71,6 +75,9 @@ function App() {
         <Route path="/instructors" element={<Instructors />} />
         <Route path="/add-instructor" element={<AddInstructor />} />
         <Route path="/edit-instructor/:id" element={<EditInstructor />} />
+        <Route path="/students" element={<Students />} />
+        <Route path="/add-student" element={<AddStudent />} />
+        <Route path="/edit-student/:id" element={<EditStudent />} />
       </Routes>
     </div>
   );
