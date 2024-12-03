@@ -29,31 +29,27 @@ function App() {
 
   return (
     <div>
-      <div class="nav" style={{backgroundColor:'red'}}>
+      <div class="nav">
         <div class="nav-links">
-        <ul>
-          <li>
             <Link to="/">Home</Link>
-          </li>
-          <li>
             <Link to="/about">About</Link>
-          </li>
           {localStorage.getItem('isLoggedIn') ? (
-            <li>
-              <Link to="/courses">Courses</Link>
-              <Link to="/students">Students</Link>
-            </li>
+            <div className='logged-in-links'>
+                <Link to="/courses">Courses</Link>
+                <Link to="/schedules">Schedules</Link>
+            </div>
+            
           ) : null}
           {(localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') ? (
-              <li>
+            <div>
                 <Link to="/instructors">Instructors</Link>
-              </li>
+                <Link to="/students">Students</Link>
+            </div>
               ) : null}
-        </ul>
         </div>
         <div class="loginContainer">
         {localStorage.getItem('isLoggedIn') ? (
-              <button className="btn" onClick={handleLogout}>Logout</button>
+              <Link className="btn" onClick={handleLogout}>Logout</Link>
         ):(
               <Link to="/login" className="btn">Login</Link>
         )}
@@ -64,6 +60,7 @@ function App() {
         )}
         </div>
       </div>
+      
       
 
       <Routes>

@@ -66,8 +66,7 @@ const Courses = () => {
 
   return (
     <div className="main-container">
-      <h1>Courses Page</h1>
-      <p>Welcome to the Courses Page!</p>
+      <h1>Courses</h1>
       {localStorage.getItem('role') === 'Admin' ? (
               <button className='btn' onClick={handleAddCourse}>Add Course</button>
             ) : null

@@ -57,54 +57,50 @@ const Register = () => {
 
     return (
         <div className="main-container">
+            <div className='form-container'>
             <h2>Register</h2>
             <form onSubmit={handleRegister}>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="email"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <select
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     >
                         <option value="" disabled>Select Role</option>
                         <option value="Admin">Admin</option>
@@ -112,16 +108,10 @@ const Register = () => {
                         <option value="Student">Student</option>
                     </select>
                 </div>
-                <button type="submit" style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#007bff',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                    }}>Register</button>
+                <button className='btn'>Register</button>
             </form>
             {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+            </div>
         </div>
     );
 };

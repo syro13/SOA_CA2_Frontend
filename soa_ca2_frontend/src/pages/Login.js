@@ -51,34 +51,32 @@ function Login() {
 
     return (
         <div className="main-container">
+            <div className='form-container'>
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <select
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         required
-                        style={{ padding: '10px', width: '100%' }}
                     >
                         <option value="" disabled>Select Role</option>
                         <option value="Admin">Admin</option>
@@ -86,21 +84,12 @@ function Login() {
                         <option value="Student">Student</option>
                     </select>
                 </div>
-                <button
-                    type="submit"
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#007bff',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                    }}
-                >
+                <button className='btn' type="submit">
                     Login
                 </button>
             </form>
             {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+            </div>
         </div>
     );
 }
