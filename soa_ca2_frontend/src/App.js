@@ -13,6 +13,7 @@ import EditInstructor from './pages/EditInstructor';
 import Students from './pages/Students';
 import AddStudent from './pages/AddStudent';
 import EditStudent from './pages/EditStudent';
+import Schedules from './pages/Schedules';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('role');
     navigate('/login');
+    window.location.reload();
   };
 
   return (
@@ -78,6 +80,7 @@ function App() {
         <Route path="/students" element={<Students />} />
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/edit-student/:id" element={<EditStudent />} />
+        <Route path="/schedules" element={<Schedules />} />
       </Routes>
     </div>
   );
