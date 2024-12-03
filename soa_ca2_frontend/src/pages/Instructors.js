@@ -66,8 +66,8 @@ const Instructors = () => {
 
   return (
     <div className="main-container">
-      <h1>Instructors Page</h1>
-      <p>Welcome to the Instructors Page!</p>
+        <div className='content-container'>
+      <h1>Instructors</h1>
       {localStorage.getItem('role') === 'Admin' ? (
               <button className='btn' onClick={handleAddInstructor}>Add Instructor</button>
             ) : null
@@ -79,9 +79,9 @@ const Instructors = () => {
           <div key={instructor.instructorId} className="card">
             <h3>{instructor.name}</h3>
             <p>{instructor.email}</p>
+            <button className='btn' onClick={() => handleViewInstructor(instructor.instructorId)}>View Instructor</button>
             {localStorage.getItem('role') === 'Admin' ? (
               <div>
-              <button className='btn' onClick={() => handleViewInstructor(instructor.instructorId)}>View Instructor</button>
               <button className='btn' onClick={() => handleEditInstructor(instructor.instructorId)}>Edit Instructor</button>
               <button className='btn' onClick={() => handleDeleteInstructor(instructor.instructorId)}>Delete Instructor</button>
               </div>
@@ -103,6 +103,7 @@ const Instructors = () => {
           </div>
         )}
       </Modal>
+      </div>
     </div>
   );
 };

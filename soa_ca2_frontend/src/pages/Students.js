@@ -65,41 +65,43 @@ const Students = () => {
 
   return (
     <div className="main-container">
-      <h1>Students Page</h1>
-      <p>Welcome to the Students Page!</p>
-      {localStorage.getItem('role') === 'Admin' ? (
-        <button className='btn' onClick={handleAddStudent}>Add Student</button>
-      ) : null}
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <div className='cards-container'>
-        {students.map((student) => (
-          <div key={student.studentId} className="card">
-            <h3>{student.name}</h3>
-            <p>{student.email}</p>
-            {localStorage.getItem('role') === 'Admin' ? (
-              <div>
-                <button className='btn' onClick={() => handleViewStudent(student.studentId)}>View Student</button>
-                <button className='btn' onClick={() => handleEditStudent(student.studentId)}>Edit Student</button>
-                <button className='btn' onClick={() => handleDeleteStudent(student.studentId)}>Delete Student</button>
-              </div>
-            ) : null}
-          </div>
-        ))}
+      <div className='content-container'>
+        <h1>Students</h1>
+        {localStorage.getItem('role') === 'Admin' ? (
+          <button className='btn' onClick={handleAddStudent}>Add Student</button>
+        ) : null}
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        <div className='cards-container'>
+          {students.map((student) => (
+            <div key={student.studentId} className="card">
+              <h3>{student.name}</h3>
+              <p>{student.email}</p>
+              <button className='btn' onClick={() => handleViewStudent(student.studentId)}>View Student</button>
+              {localStorage.getItem('role') === 'Admin' ? (
+                <div>
+                  <button className='btn' onClick={() => handleEditStudent(student.studentId)}>Edit Student</button>
+                  <button className='btn' onClick={() => handleDeleteStudent(student.studentId)}>Delete Student</button>
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Student Details"
+          className='modal'
+        >
+          {selectedStudent && (
+            <div className='modal-container'>
+              <h2>{selectedStudent.name}</h2>
+              <p>{selectedStudent.email}</p>
+              <button className='btn' onClick={closeModal}>Close</button>
+            </div>
+          )}
+        </Modal>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Student Details"
-      >
-        {selectedStudent && (
-          <div>
-            <h2>{selectedStudent.name}</h2>
-            <p>{selectedStudent.email}</p>
-            <button className='btn' onClick={closeModal}>Close</button>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 };

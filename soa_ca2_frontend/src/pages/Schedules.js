@@ -59,8 +59,8 @@ function Schedules() {
 
     return (
         <div className="main-container">
+        <div className='content-container'>
             <h1>Schedules</h1>
-
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             <div className="cards-container">
@@ -79,6 +79,7 @@ function Schedules() {
                         <p>Time Slot: {schedule.timeSlot}</p>
                     </div>
                 ))}
+            </div>
             </div>
         </div>
     );

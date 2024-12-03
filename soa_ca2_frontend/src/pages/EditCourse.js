@@ -36,10 +36,10 @@ function EditCourse() {
    
     return (
         <div className="main-container">
+            <div className='form-container'>
             <h1>Edit Course</h1>
-            <p>Welcome to the Edit Course Page!</p>
             <form onSubmit={handleEditCourse}>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Course Name"
@@ -47,10 +47,9 @@ function EditCourse() {
                         onChange={(e) => setTitle(e.target.value)}
                         maxLength="100"
                         required
-                        style={{ pEditing: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Course Description"
@@ -58,10 +57,9 @@ function EditCourse() {
                         onChange={(e) => setDesc(e.target.value)}
                         maxLength="255"
                         required
-                        style={{ pEditing: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="number"
                         placeholder="Credits"
@@ -70,18 +68,11 @@ function EditCourse() {
                         min="1"
                         max="10"
                         required
-                        style={{ pEditing: '10px', width: '100%' }}
                     />
                 </div>
-                <button type="submit" style={{
-                        pEditing: '10px 20px',
-                        backgroundColor: '#007bff',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                    }}>Edit Course</button>
+                <button type="submit" className='btn'>Edit Course</button>
             </form>
+            </div>
         </div>
     );
     }

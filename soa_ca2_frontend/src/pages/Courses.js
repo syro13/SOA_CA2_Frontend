@@ -66,6 +66,7 @@ const Courses = () => {
 
   return (
     <div className="main-container">
+        <div className='content-container'>
       <h1>Courses</h1>
       {localStorage.getItem('role') === 'Admin' ? (
               <button className='btn' onClick={handleAddCourse}>Add Course</button>
@@ -79,9 +80,9 @@ const Courses = () => {
             <h3>{course.title}</h3>
             <p>{course.description}</p>
             <p><strong>Credits:</strong> {course.credits}</p>
+            <button className='btn' onClick={() => handleViewCourse(course.courseId)}>View Course</button>
             {localStorage.getItem('role') === 'Admin' ? (
               <div>
-              <button className='btn' onClick={() => handleViewCourse(course.courseId)}>View Course</button>
               <button className='btn' onClick={() => handleEditCourse(course.courseId)}>Edit Course</button>
               <button className='btn' onClick={() => handleDeleteCourse(course.courseId)}>Delete Course</button>
               </div>
@@ -104,6 +105,7 @@ const Courses = () => {
           </div>
         )}
       </Modal>
+      </div>
     </div>
   );
 };

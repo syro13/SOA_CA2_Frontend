@@ -34,10 +34,10 @@ function EditInstructor() {
    
     return (
         <div className="main-container">
+            <div className='form-container'>
             <h1>Edit Instructor</h1>
-            <p>Welcome to the Edit Instructor Page!</p>
             <form onSubmit={handleEditInstructor}>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Instructor Name"
@@ -45,10 +45,9 @@ function EditInstructor() {
                         onChange={(e) => setName(e.target.value)}
                         maxLength="100"
                         required
-                        style={{ pEditing: '10px', width: '100%' }}
                     />
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <input
                         type="text"
                         placeholder="Instructor email"
@@ -56,18 +55,11 @@ function EditInstructor() {
                         onChange={(e) => setEmail(e.target.value)}
                         maxLength="255"
                         required
-                        style={{ pEditing: '10px', width: '100%' }}
                     />
                 </div>
-                <button type="submit" style={{
-                        pEditing: '10px 20px',
-                        backgroundColor: '#007bff',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                    }}>Edit Instructor</button>
+                <button type="submit" className='btn'>Edit Instructor</button>
             </form>
+            </div>
         </div>
     );
     }
