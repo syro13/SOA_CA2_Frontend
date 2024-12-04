@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { fetchLogin } from '../services/api'; // Assuming the axios functions are saved in 'src/services/api.js'
+import { fetchLogin } from '../services/api';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
     const [error, setError] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // React state for login status
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // Check localStorage for login state on component mount
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (token) {
@@ -19,12 +18,10 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(''); // Clear previous errors
+        setError('');
 
         try {
             const response = await fetchLogin('api/Auth/login', { username, password, role });
-
-            // Handle success
             if (response.token) {
                 localStorage.setItem('role', role);
                 localStorage.setItem('authToken', response.token);
@@ -40,7 +37,6 @@ function Login() {
         }
     };
 
-    // Redirect if logged in
     if (isLoggedIn) {
         return (
             <div>

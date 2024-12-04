@@ -25,7 +25,7 @@ function Schedules() {
 
     const getCourse = async (courseId) => {
         try {
-            if (!courses[courseId]) { // Avoid fetching the same course multiple times
+            if (!courses[courseId]) {
                 const response = await fetch(`api/Courses/${courseId}`, localStorage.getItem('authToken'));
                 setCourses((prevCourses) => ({ ...prevCourses, [courseId]: response }));
             }
@@ -36,7 +36,7 @@ function Schedules() {
 
     const getInstructor = async (instructorId) => {
         try {
-            if (!instructors[instructorId]) { // Correctly check the instructors state
+            if (!instructors[instructorId]) {
                 const response = await fetch(`api/Instructors/${instructorId}`, localStorage.getItem('authToken'));
                 setInstructors((prevInstructors) => ({ ...prevInstructors, [instructorId]: response }));
             }
@@ -50,7 +50,6 @@ function Schedules() {
     }, []);
 
     useEffect(() => {
-        // Fetch all related courses when schedules are loaded
         schedules.forEach((schedule) => getCourse(schedule.courseId));
         if (localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') {
             schedules.forEach((schedule) => getInstructor(schedule.instructorId));
