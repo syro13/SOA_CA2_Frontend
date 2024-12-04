@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { fetch } from '../services/api';
+import { fetch, fetchDelete } from '../services/api';
 
 Modal.setAppElement('#root');
 
@@ -56,29 +56,55 @@ function Schedules() {
         }
     });
 
+    const handleAddSchedule = () => {
+        window.location.href = '/add-schedule';
+      };
+
+    const handleEditSchedule = (id) => {
+        window.location.href = `/edit-schedule/${id}`;
+    };
+
+    const handleDeleteSchedule = async (id) => {
+        try {
+            await fetchDelete(`api/Schedules/${id}`, localStorage.getItem('authToken'));
+            getSchedules();
+        } catch (error) {
+            console.error('Error deleting schedule:', error);
+        }
+    }
     return (
         <div className="main-container">
-        <div className='content-container'>
-            <h1>Schedules</h1>
-            {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-            <div className="cards-container">
-                {schedules.map((schedule) => (
-                    <div key={schedule.scheduleId} className="card">
-                        {localStorage.getItem('role') === 'Admin' ? (
-                           <p>Schedule ID: {schedule.scheduleId}</p>
-                        ) : null}
-                        
-                        <p>Course Title: <strong>{courses[schedule.courseId]?.title || 'Loading course...'}</strong></p>
-                        {localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === "Instructor"? (
-                        <p>Instructor Name: {instructors[schedule.instructorId]?.name || 'Loading instructor...'}</p>
-                        ) : null}
-                        <p>Room number: {schedule.roomId}</p>
-                        <p>Date: {schedule.date}</p>
-                        <p>Time Slot: {schedule.timeSlot}</p>
-                    </div>
-                ))}
-            </div>
+            <div className='content-container'>
+                <h1>Schedules</h1>
+                {localStorage.getItem('role') === 'Admin' ? (
+                    <button className='btn' onClick={handleAddSchedule}>Add Student</button>
+                ) : null}
+                {loading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
+                <div className="cards-container">
+                    {schedules.map((schedule) => (
+                        <div key={schedule.scheduleId} className="card">
+                            {localStorage.getItem('role') === 'Admin' ? (
+                                <p>Schedule ID: {schedule.scheduleId}</p>
+                            ) : null}
+
+                            <p>Course Title: <strong>{courses[schedule.courseId]?.title || 'Loading course...'}</strong></p>
+                            {localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === "Instructor" ? (
+                                <p>Instructor Name: {instructors[schedule.instructorId]?.name || 'Loading instructor...'}</p>
+                            ) : null}
+                            <p>Room number: {schedule.roomId}</p>
+                            <p>Date: {schedule.date}</p>
+                            <p>Time Slot: {schedule.timeSlot}</p>
+                            {localStorage.getItem('role') === 'Admin' ? (
+                                <div>
+                                    <button className='btn' onClick={() => handleEditSchedule(schedule.scheduleId)}>Edit Schedule</button>
+                                    <button className='btn' onClick={() => handleDeleteSchedule(schedule.scheduleId)}>Delete Schedule</button>
+                                </div>
+                            ) : null
+                            }
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

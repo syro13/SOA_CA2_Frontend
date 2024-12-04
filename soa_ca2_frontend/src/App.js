@@ -14,6 +14,9 @@ import Students from './pages/Students';
 import AddStudent from './pages/AddStudent';
 import EditStudent from './pages/EditStudent';
 import Schedules from './pages/Schedules';
+import AddSchedule from './pages/AddSchedule';
+import EditSchedule from './pages/EditSchedule';
+
 import './App.css';
 
 function App() {
@@ -78,6 +81,8 @@ function App() {
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/edit-student/:id" element={<EditStudent />} />
         <Route path="/schedules" element={<Schedules />} />
+        <Route path="/add-schedule" element={<AddSchedule />} />
+        <Route path="/edit-schedule/:id" element={<EditSchedule />} />
       </Routes>
     </div>
   );
