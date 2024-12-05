@@ -7,7 +7,7 @@ function Footer() {
         <div className='footer'>
             <div className="footer-content-left">
                 <img src="/brand-logo.png" alt="Logo" />
-                <h2>Student Management System</h2>
+                <h2>Educational Management System</h2>
             </div>
             <div className="footer-links">
                 <h4>Explore</h4>
