@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import About from './pages/About';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -16,11 +16,13 @@ import EditStudent from './pages/EditStudent';
 import Schedules from './pages/Schedules';
 import AddSchedule from './pages/AddSchedule';
 import EditSchedule from './pages/EditSchedule';
+import Footer from './pages/Footer';
 
 import './App.css';
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
@@ -30,41 +32,45 @@ function App() {
     window.location.reload();
   };
 
+  const handleScrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
       <div class="nav">
         <div class="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
+          <Link to="/">Home</Link>
+          {location.pathname === '/' ? (
+          <Link onClick={() => handleScrollToSection('about')}>About</Link>
+          ) : null}
           {localStorage.getItem('isLoggedIn') ? (
-            <div className='logged-in-links'>
-                <Link to="/courses">Courses</Link>
-                <Link to="/schedules">Schedules</Link>
-            </div>
-            
+              <><Link to="/courses">Courses</Link><Link to="/schedules">Schedules</Link></>
+
           ) : null}
           {(localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') ? (
-            <div>
-                <Link to="/instructors">Instructors</Link>
-                <Link to="/students">Students</Link>
-            </div>
-              ) : null}
+              <><Link to="/instructors">Instructors</Link><Link to="/students">Students</Link></>
+          ) : null}
         </div>
         <div class="loginContainer">
-        {localStorage.getItem('isLoggedIn') ? (
-              <Link className="btn" onClick={handleLogout}>Logout</Link>
-        ):(
-              <Link to="/login" className="btn">Login</Link>
-        )}
-        {localStorage.getItem('role') === 'Admin' ? (
-              <Link to="/register" className="btn">Register</Link>
-        ):(
-              null
-        )}
+          {localStorage.getItem('isLoggedIn') ? (
+            <Link className="btn" onClick={handleLogout}>Logout</Link>
+          ) : (
+            <Link to="/login" className="btn">Login</Link>
+          )}
+          {localStorage.getItem('role') === 'Admin' ? (
+            <Link to="/register" className="btn">Register New Users</Link>
+          ) : (
+            null
+          )}
         </div>
       </div>
-      
-      
+
+
+
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -84,6 +90,8 @@ function App() {
         <Route path="/add-schedule" element={<AddSchedule />} />
         <Route path="/edit-schedule/:id" element={<EditSchedule />} />
       </Routes>
+
+      <Footer />
     </div>
   );
 }
