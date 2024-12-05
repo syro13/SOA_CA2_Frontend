@@ -15,8 +15,6 @@ const Register = () => {
         setMessage(null);
         try {
             const response = await fetchRegister('api/Auth/register', { name, email, username, password, role });
-            console.log(response.message);
-            console.log(response.data);
 
             switch (response.message) {
                 case 'Admin registered successfully.':
@@ -30,9 +28,8 @@ const Register = () => {
                     break;
             };
         } catch (error) {
-            console.error('Error during registration:', error);
-            console.log(error.response.data);
             setError(error.response.data);
+            throw error;
         }
     };
 

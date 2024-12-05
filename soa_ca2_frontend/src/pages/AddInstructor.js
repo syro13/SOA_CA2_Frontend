@@ -11,7 +11,7 @@ function AddInstructor() {
             await fetchAdd('api/Instructors?userId=1', sessionStorage.getItem('authToken'), { name, email});
             window.location.href = `/instructors`;
           } catch (error) {
-            console.log('Error adding instructors:', error);
+            throw error;
           }
     }
 

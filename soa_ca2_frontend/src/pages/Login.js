@@ -25,15 +25,14 @@ function Login() {
             if (response.token) {
                 sessionStorage.setItem('role', role);
                 sessionStorage.setItem('authToken', response.token);
-                sessionStorage.setItem('isLoggedIn', 'true'); // Save login state
-                setIsLoggedIn(true); // Update React state
-                console.log('Login successful:', response);
+                sessionStorage.setItem('isLoggedIn', 'true');
+                setIsLoggedIn(true);
             } else {
                 setError('Login failed. Please try again.');
             }
         } catch (err) {
             setError('Invalid username or password');
-            console.error('Error during login:', err);
+            throw error;
         }
     };
 

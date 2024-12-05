@@ -6,7 +6,6 @@ const API_KEY = 'S3cR3tK3yForMyAPI@2024*EducationCourse#Management';
 // Function to Login
 export const fetchLogin = async (endpoint, data) => {
   try {
-    console.log('Posting data:', data);
     const response = await axios.post(`${API_BASE_URL}/${endpoint}`, data, {
       headers: {
         'apiKey': `${API_KEY}`
@@ -14,7 +13,6 @@ export const fetchLogin = async (endpoint, data) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error posting data:', error);
     throw error;
   }
 };
@@ -22,7 +20,6 @@ export const fetchLogin = async (endpoint, data) => {
 // Function to Register
 export const fetchRegister = async (endpoint, data) => {
   try {
-    console.log('Posting data:', data);
     const response = await axios.post(`${API_BASE_URL}/${endpoint}`, data, {
       headers: {
         'apiKey': `${API_KEY}`
@@ -30,7 +27,6 @@ export const fetchRegister = async (endpoint, data) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error posting data:', error);
     throw error;
   }
 };
@@ -46,7 +42,6 @@ export const fetch = async (endpoint, token) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching data:', error);
     throw error;
   }
 };
@@ -54,7 +49,6 @@ export const fetch = async (endpoint, token) => {
 // Function to fetch data (for a single item)
 export const fetchAdd = async (endpoint, token, data) => {
   try {
-    console.log('Posting data:', data);
     await axios.post(`${API_BASE_URL}/${endpoint}`, data, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -62,7 +56,6 @@ export const fetchAdd = async (endpoint, token, data) => {
       }
     });
   } catch (error) {
-    console.error('Error fetching data:', error);
     throw error;
   }
 };
@@ -77,7 +70,6 @@ export const fetchDelete = async (endpoint, token, id) => {
       }
     });
   } catch (error) {
-    console.error('Error deleting data:', error);
     throw error;
   }
 };
@@ -85,7 +77,6 @@ export const fetchDelete = async (endpoint, token, id) => {
 // Function to edit data
 export const fetchEdit = async (endpoint, token, data) => {
   try {
-    console.log('Posting data:', data);
     await axios.put(`${API_BASE_URL}/${endpoint}`, data, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -93,7 +84,6 @@ export const fetchEdit = async (endpoint, token, data) => {
       }
     });
   } catch (error) {
-    console.error('Error fetching data:', error);
     throw error;
   }
 };

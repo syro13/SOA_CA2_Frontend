@@ -16,7 +16,7 @@ function EditCourse() {
             setDesc(response.description);
             setCredits(response.credits);
           } catch (error) {
-            console.error('Error fetching courses:', error);
+            throw error;
           }
         };
     
@@ -29,7 +29,7 @@ function EditCourse() {
             await fetchEdit(`api/Courses/${id}`, sessionStorage.getItem('authToken'), {title, description, credits});
             window.location.href = `/courses`;
           } catch (error) {
-            console.log('Error fetching courses:', error);
+            throw error;
           }
     }
 

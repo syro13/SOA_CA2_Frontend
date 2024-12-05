@@ -24,13 +24,12 @@ const Instructors = () => {
   };
 
   const handleViewInstructor = async (id) => {
-    console.log('Viewing instructor:', id);
     try {
       const response = await fetch(`api/Instructors/${id}`, sessionStorage.getItem('authToken'));
       setSelectedInstructor(response);
       setModalIsOpen(true);
     } catch (error) {
-      console.error('Error viewing instructor:', error);
+      throw error;
     }
   };
 
@@ -44,22 +43,19 @@ const Instructors = () => {
   }, []);
 
   const handleAddInstructor = () => {
-    console.log('Adding instructor');
     window.location.href = '/add-instructor';
   };
 
   const handleEditInstructor = (id) => {
-    console.log('Editing instructor:', id);
     window.location.href = `/edit-instructor/${id}`;
   };
 
   const handleDeleteInstructor = async (id) => {
-    console.log('Deleting instructor:', id);
     try {
       await fetchDelete(`api/Instructors/${id}`, sessionStorage.getItem('authToken'));
       getInstructors();
     } catch (error) {
-      console.error('Error deleting instructor:', error);
+      throw error;
     }
   }
 

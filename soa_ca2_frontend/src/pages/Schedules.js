@@ -30,7 +30,7 @@ function Schedules() {
                 setCourses((prevCourses) => ({ ...prevCourses, [courseId]: response }));
             }
         } catch (error) {
-            console.error('Error fetching course:', error);
+            throw error;
         }
     };
 
@@ -41,7 +41,7 @@ function Schedules() {
                 setInstructors((prevInstructors) => ({ ...prevInstructors, [instructorId]: response }));
             }
         } catch (error) {
-            console.error('Error fetching instructor:', error);
+            throw error;
         }
     };
 
@@ -69,7 +69,7 @@ function Schedules() {
             await fetchDelete(`api/Schedules/${id}`, sessionStorage.getItem('authToken'));
             getSchedules();
         } catch (error) {
-            console.error('Error deleting schedule:', error);
+            throw error;
         }
     }
     return (

@@ -12,7 +12,7 @@ function AddCourse() {
             await fetchAdd('api/Courses', sessionStorage.getItem('authToken'), { title, description, credits });
             window.location.href = `/courses`;
         } catch (error) {
-            console.log('Error fetching courses:', error);
+            throw error;
         }
     }
 

@@ -24,13 +24,12 @@ const Courses = () => {
   };
 
   const handleViewCourse = async (id) => {
-    console.log('Viewing course:', id);
     try {
       const response = await fetch(`api/Courses/${id}`, sessionStorage.getItem('authToken'));
       setSelectedCourse(response);
       setModalIsOpen(true);
     } catch (error) {
-      console.error('Error viewing course:', error);
+      throw error;
     }
   };
 
@@ -44,22 +43,19 @@ const Courses = () => {
   }, []);
 
   const handleAddCourse = () => {
-    console.log('Adding course');
     window.location.href = '/add-course';
   };
 
   const handleEditCourse = (id) => {
-    console.log('Editing course:', id);
     window.location.href = `/edit-course/${id}`;
   };
 
   const handleDeleteCourse = async (id) => {
-    console.log('Deleting course:', id);
     try {
       await fetchDelete(`api/Courses/${id}`, sessionStorage.getItem('authToken'));
       getCourses();
     } catch (error) {
-      console.error('Error deleting course:', error);
+      throw error;
     }
   }
 

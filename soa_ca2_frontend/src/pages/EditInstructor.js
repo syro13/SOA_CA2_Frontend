@@ -14,7 +14,7 @@ function EditInstructor() {
             setName(response.name);
             setEmail(response.email);
           } catch (error) {
-            console.error('Error fetching instructors:', error);
+            throw error;
           }
         };
     
@@ -27,7 +27,7 @@ function EditInstructor() {
             await fetchEdit(`api/Instructors/${id}`, sessionStorage.getItem('authToken'), {name, email});
             window.location.href = `/instructors`;
           } catch (error) {
-            console.log('Error fetching instructors:', error);
+            throw error;
           }
     }
 

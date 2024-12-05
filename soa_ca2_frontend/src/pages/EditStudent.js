@@ -14,7 +14,7 @@ function EditStudent() {
                 setName(response.name);
                 setEmail(response.email);
             } catch (error) {
-                console.error('Error fetching student:', error);
+                throw error;
             }
         };
 
@@ -27,7 +27,7 @@ function EditStudent() {
             await fetchEdit(`api/Students/${id}`, sessionStorage.getItem('authToken'), { name, email });
             window.location.href = `/students`;
         } catch (error) {
-            console.log('Error editing student:', error);
+            throw error;
         }
     };
 

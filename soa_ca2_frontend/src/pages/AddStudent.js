@@ -11,7 +11,7 @@ function AddStudent() {
             await fetchAdd('api/Students?userId=1', sessionStorage.getItem('authToken'), { name, email });
             window.location.href = `/students`;
         } catch (error) {
-            console.log('Error adding student:', error);
+            throw error;
         }
     };
 

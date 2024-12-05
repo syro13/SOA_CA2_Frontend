@@ -24,13 +24,12 @@ const Students = () => {
   };
 
   const handleViewStudent = async (id) => {
-    console.log('Viewing student:', id);
     try {
       const response = await fetch(`api/Students/${id}`, sessionStorage.getItem('authToken'));
       setSelectedStudent(response);
       setModalIsOpen(true);
     } catch (error) {
-      console.error('Error viewing student:', error);
+      throw error;
     }
   };
 
@@ -44,22 +43,19 @@ const Students = () => {
   }, []);
 
   const handleAddStudent = () => {
-    console.log('Adding student');
     window.location.href = '/add-student';
   };
 
   const handleEditStudent = (id) => {
-    console.log('Editing student:', id);
     window.location.href = `/edit-student/${id}`;
   };
 
   const handleDeleteStudent = async (id) => {
-    console.log('Deleting student:', id);
     try {
       await fetchDelete(`api/Students/${id}`, sessionStorage.getItem('authToken'));
       getStudents();
     } catch (error) {
-      console.error('Error deleting student:', error);
+      throw error;
     }
   };
 
