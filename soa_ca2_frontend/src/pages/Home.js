@@ -34,7 +34,7 @@ function Home() {
             </p>
           </div>
           <div className='content-img'>
-            <img src="/college-student-2.jpg" />
+            <img src="/college-student-2.jpg" alt="College Student"/>
           </div>
         </div>
       </div>

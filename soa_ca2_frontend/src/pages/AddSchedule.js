@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetch, fetchAdd } from '../services/api';
+import React, { useState } from 'react';
+import { fetchAdd } from '../services/api';
 
 function AddSchedule() {
     const [courseId, setCourseId] = useState('');

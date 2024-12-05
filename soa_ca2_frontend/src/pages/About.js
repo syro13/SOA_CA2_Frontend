@@ -6,7 +6,7 @@ function About() {
       <div className='content-container'>
         <div className='content-section'>
           <div className='content-img'>
-            <img src="/college-students-1.jpg" />
+            <img src="/college-students-1.jpg" alt="College Student"/>
           </div>
           <div className='content-text'>
             <h1>About Us</h1>
