@@ -76,15 +76,11 @@ const Instructors = () => {
       {error && <p>{error}</p>}
       <div className='cards-container'>
         {instructors.map((instructor) => (
-          <div key={instructor.instructorId} className="card">
+          <div key={instructor.instructorId} className="card" onClick={() => handleViewInstructor(instructor.instructorId)}>
             <h3>{instructor.name}</h3>
             <p>{instructor.email}</p>
-            <button className='btn' onClick={() => handleViewInstructor(instructor.instructorId)}>View Instructor</button>
             {localStorage.getItem('role') === 'Admin' ? (
-              <div>
-              <button className='btn' onClick={() => handleEditInstructor(instructor.instructorId)}>Edit Instructor</button>
-              <button className='btn' onClick={() => handleDeleteInstructor(instructor.instructorId)}>Delete Instructor</button>
-              </div>
+              <><button className='btn' onClick={() => handleEditInstructor(instructor.instructorId)}>Edit Instructor</button><button className='btn' onClick={() => handleDeleteInstructor(instructor.instructorId)}>Delete Instructor</button></>
             ) : null
               }
           </div>
@@ -94,9 +90,10 @@ const Instructors = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Instructor Details"
+        className='modal'
       >
         {selectedInstructor && (
-          <div>
+          <div className='modal-container'>
             <h2>{selectedInstructor.name}</h2>
             <p>{selectedInstructor.email}</p>
             <button className='btn' onClick={closeModal}>Close</button>

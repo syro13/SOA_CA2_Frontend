@@ -74,10 +74,9 @@ const Students = () => {
         {error && <p>{error}</p>}
         <div className='cards-container'>
           {students.map((student) => (
-            <div key={student.studentId} className="card">
+            <div key={student.studentId} className="card" onClick={() => handleViewStudent(student.studentId)}>
               <h3>{student.name}</h3>
               <p>{student.email}</p>
-              <button className='btn' onClick={() => handleViewStudent(student.studentId)}>View Student</button>
               {localStorage.getItem('role') === 'Admin' ? (
                 <div>
                   <button className='btn' onClick={() => handleEditStudent(student.studentId)}>Edit Student</button>

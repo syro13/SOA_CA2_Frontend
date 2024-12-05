@@ -74,18 +74,14 @@ const Courses = () => {
               }
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <div className='cards-container'>
+      <div className='cards-container' >
         {courses.map((course) => (
-          <div key={course.courseId} className="card">
+          <div key={course.courseId} className="card" onClick={() => handleViewCourse(course.courseId)}>
             <h3>{course.title}</h3>
             <p>{course.description}</p>
             <p><strong>Credits:</strong> {course.credits}</p>
-            <button className='btn' onClick={() => handleViewCourse(course.courseId)}>View Course</button>
             {localStorage.getItem('role') === 'Admin' ? (
-              <div>
-              <button className='btn' onClick={() => handleEditCourse(course.courseId)}>Edit Course</button>
-              <button className='btn' onClick={() => handleDeleteCourse(course.courseId)}>Delete Course</button>
-              </div>
+              <><button className='btn' onClick={() => handleEditCourse(course.courseId)}>Edit Course</button><button className='btn' onClick={() => handleDeleteCourse(course.courseId)}>Delete Course</button></>
             ) : null
               }
           </div>
@@ -95,9 +91,10 @@ const Courses = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Course Details"
+        className='modal'
       >
         {selectedCourse && (
-          <div>
+          <div className='modal-container'>
             <h2>{selectedCourse.title}</h2>
             <p>{selectedCourse.description}</p>
             <p><strong>Credits:</strong> {selectedCourse.credits}</p>
