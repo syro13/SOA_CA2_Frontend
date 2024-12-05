@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -41,7 +43,7 @@
 .btn {
   margin: 10px;
   padding: 10px 20px;
-  background-color: #d9534f;
+  background-color: #1eb248;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -51,7 +53,7 @@
   transition: background-color 0.3s;
 }
 .btn:hover {
-  background-color: #c9302c;
+  background-color: #168134;
   transform: scale(1.05); 
 }
 
@@ -61,28 +63,39 @@
   transform: scale(0.95);
 }
 
-.main-container {
-  max-width: 80%;
-  margin: auto;
-  text-align: center;
-  
-}
 body{
   height: 100vh;
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-image: url("../public/background.jpg");
-  backdrop-filter: blur(5px);
-  background-size: cover;
-  background-repeat: no-repeat;
+  padding: 0px;
+  background: linear-gradient(to right, #a9d3ae, #F2F2F2);
+  font-family: 'Poppins', sans-serif;
 }
 
 .content-container{
-  width: fit-content;
-  background-color: #ffffffc7;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 20px;
+  background-color: #ffffff;
+}
+
+.content-section{
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+.content-text{
+  width: 45%;
+}
+.content-img{
+  width: 45%;
+}
+.content-img img{
+  width: 100%;
+  height: 100%;
+  border: #000 1px solid;
 }
 
 /* cards */
@@ -122,7 +135,7 @@ body{
 
 /* nav links */
 .nav{
-  padding-bottom: 40px;
+  padding: 10px 20% ;
   display: flex;
   justify-content: space-between;
   background-image: linear-gradient(#2e5c30, rgba(255, 255, 255, 0));
@@ -162,20 +175,20 @@ body{
   display: flex;
   align-items: center;
 }
-
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
   max-width: 100%;
-  padding: 20px;
   text-align: center;
+  margin-top: 0px;
+  padding: 0px;
 }
 
 .form-container {
   width: 30%;
-  margin: auto;
+  margin: 30px;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -218,3 +231,128 @@ body{
   margin: auto;
   border-radius: 10px;
 }
+
+.hero-banner-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 20px;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  padding: 40px 10%;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  border-top: 2px solid #e0e0e0;
+}
+
+.footer-content-left {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.footer-content-left img {
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+.footer-content-left h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.footer-links {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-links h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.footer-links a {
+  display: block;
+  font-size: 16px;
+  color: #666;
+  text-decoration: none;
+  margin: 8px 0;
+  position: relative;
+  padding-left: 25px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #22b572;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #22b572;
+  text-decoration: underline;
+}
+
+.footer-links a:hover::before {
+  transform: translateX(5px);
+}
+
+.footer-content-right {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-content-right h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.footer-content-right p {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.footer-content-right p strong {
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-content-left,
+  .footer-links,
+  .footer-content-right {
+    flex: none;
+    margin-bottom: 30px;
+  }
+
+  .footer-content-left img {
+    margin: 0 auto 10px;
+  }
+}
+
