@@ -77,7 +77,7 @@ function Schedules() {
             <div className='content-container'>
                 <h1>Schedules</h1>
                 {localStorage.getItem('role') === 'Admin' ? (
-                    <button className='btn' onClick={handleAddSchedule}>Add Student</button>
+                    <button className='btn' onClick={handleAddSchedule}>Add Schedule</button>
                 ) : null}
                 {loading && <p>Loading...</p>}
                 {error && <p>{error}</p>}

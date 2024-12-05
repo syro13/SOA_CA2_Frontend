@@ -70,7 +70,7 @@ function AddSchedule() {
                             required
                         />
                     </div>
-                    <button type="submit" className='btn'>Edit Schedule</button>
+                    <button type="submit" className='btn'>Add Schedule</button>
                 </form>
             </div>
         </div>
