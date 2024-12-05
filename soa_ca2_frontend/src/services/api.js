@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5118';
+const API_BASE_URL = 'https://educationcoursemanagementapiapp.azurewebsites.net/';
 const API_KEY = 'S3cR3tK3yForMyAPI@2024*EducationCourse#Management';
 
 // Function to Login
