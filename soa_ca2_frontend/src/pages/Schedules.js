@@ -96,10 +96,7 @@ function Schedules() {
                             <p>Date: {schedule.date}</p>
                             <p>Time Slot: {schedule.timeSlot}</p>
                             {localStorage.getItem('role') === 'Admin' ? (
-                                <div>
-                                    <button className='btn' onClick={() => handleEditSchedule(schedule.scheduleId)}>Edit Schedule</button>
-                                    <button className='btn' onClick={() => handleDeleteSchedule(schedule.scheduleId)}>Delete Schedule</button>
-                                </div>
+                                    <><button className='btn' onClick={() => handleEditSchedule(schedule.scheduleId)}>Edit Schedule</button><button className='btn' onClick={() => handleDeleteSchedule(schedule.scheduleId)}>Delete Schedule</button></>
                             ) : null
                             }
                         </div>
