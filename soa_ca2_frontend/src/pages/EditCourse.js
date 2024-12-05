@@ -11,7 +11,7 @@ function EditCourse() {
     useEffect(() => {
         const getCourse = async () => {
           try {
-            const response = await fetch(`api/Courses/${id}`, localStorage.getItem('authToken'));
+            const response = await fetch(`api/Courses/${id}`, sessionStorage.getItem('authToken'));
             setTitle(response.title);
             setDesc(response.description);
             setCredits(response.credits);
@@ -26,7 +26,7 @@ function EditCourse() {
     const handleEditCourse = async (e) => {
         e.preventDefault();
         try {
-            await fetchEdit(`api/Courses/${id}`, localStorage.getItem('authToken'), {title, description, credits});
+            await fetchEdit(`api/Courses/${id}`, sessionStorage.getItem('authToken'), {title, description, credits});
             window.location.href = `/courses`;
           } catch (error) {
             console.log('Error fetching courses:', error);

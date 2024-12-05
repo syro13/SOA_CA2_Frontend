@@ -25,9 +25,9 @@ function App() {
   const location = useLocation();
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('role');
+    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('role');
     navigate('/login');
     window.location.reload();
   };
@@ -47,21 +47,21 @@ function App() {
           {location.pathname === '/' ? (
           <Link onClick={() => handleScrollToSection('about')}>About</Link>
           ) : null}
-          {localStorage.getItem('isLoggedIn') ? (
+          {sessionStorage.getItem('isLoggedIn') ? (
               <><Link to="/courses">Courses</Link><Link to="/schedules">Schedules</Link></>
 
           ) : null}
-          {(localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') ? (
+          {(sessionStorage.getItem('role') === 'Admin' || sessionStorage.getItem('role') === 'Instructor') ? (
               <><Link to="/instructors">Instructors</Link><Link to="/students">Students</Link></>
           ) : null}
         </div>
         <div class="loginContainer">
-          {localStorage.getItem('isLoggedIn') ? (
+          {sessionStorage.getItem('isLoggedIn') ? (
             <Link className="btn" onClick={handleLogout}>Logout</Link>
           ) : (
             <Link to="/login" className="btn">Login</Link>
           )}
-          {localStorage.getItem('role') === 'Admin' ? (
+          {sessionStorage.getItem('role') === 'Admin' ? (
             <Link to="/register" className="btn">Register New Users</Link>
           ) : (
             null

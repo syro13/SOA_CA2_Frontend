@@ -13,13 +13,13 @@ function Footer() {
                 <h4>Explore</h4>
                 <Link to="/">Home</Link>
                 <Link to="/about">About</Link>
-                {localStorage.getItem('isLoggedIn') ? (
+                {sessionStorage.getItem('isLoggedIn') ? (
                     <>
                         <Link to="/courses">Courses</Link>
                         <Link to="/schedules">Schedules</Link>
                     </>
                 ) : null}
-                {(localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') ? (
+                {(sessionStorage.getItem('role') === 'Admin' || sessionStorage.getItem('role') === 'Instructor') ? (
                     <>
                         <Link to="/instructors">Instructors</Link>
                         <Link to="/students">Students</Link>

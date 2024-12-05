@@ -10,7 +10,7 @@ function EditInstructor() {
     useEffect(() => {
         const getInstructor = async () => {
           try {
-            const response = await fetch(`api/Instructors/${id}`, localStorage.getItem('authToken'));
+            const response = await fetch(`api/Instructors/${id}`, sessionStorage.getItem('authToken'));
             setName(response.name);
             setEmail(response.email);
           } catch (error) {
@@ -24,7 +24,7 @@ function EditInstructor() {
     const handleEditInstructor = async (e) => {
         e.preventDefault();
         try {
-            await fetchEdit(`api/Instructors/${id}`, localStorage.getItem('authToken'), {name, email});
+            await fetchEdit(`api/Instructors/${id}`, sessionStorage.getItem('authToken'), {name, email});
             window.location.href = `/instructors`;
           } catch (error) {
             console.log('Error fetching instructors:', error);

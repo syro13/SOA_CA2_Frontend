@@ -14,7 +14,7 @@ const Students = () => {
   const getStudents = async () => {
     setLoading(true);
     try {
-      const response = await fetch('api/Students', localStorage.getItem('authToken'));
+      const response = await fetch('api/Students', sessionStorage.getItem('authToken'));
       setStudents(response);
     } catch (error) {
       setError('Error fetching students');
@@ -26,7 +26,7 @@ const Students = () => {
   const handleViewStudent = async (id) => {
     console.log('Viewing student:', id);
     try {
-      const response = await fetch(`api/Students/${id}`, localStorage.getItem('authToken'));
+      const response = await fetch(`api/Students/${id}`, sessionStorage.getItem('authToken'));
       setSelectedStudent(response);
       setModalIsOpen(true);
     } catch (error) {
@@ -56,7 +56,7 @@ const Students = () => {
   const handleDeleteStudent = async (id) => {
     console.log('Deleting student:', id);
     try {
-      await fetchDelete(`api/Students/${id}`, localStorage.getItem('authToken'));
+      await fetchDelete(`api/Students/${id}`, sessionStorage.getItem('authToken'));
       getStudents();
     } catch (error) {
       console.error('Error deleting student:', error);
@@ -67,7 +67,7 @@ const Students = () => {
     <div className="main-container">
       <div className='content-container'>
         <h1>Students</h1>
-        {localStorage.getItem('role') === 'Admin' ? (
+        {sessionStorage.getItem('role') === 'Admin' ? (
           <button className='btn' onClick={handleAddStudent}>Add Student</button>
         ) : null}
         {loading && <p>Loading...</p>}
@@ -77,7 +77,7 @@ const Students = () => {
             <div key={student.studentId} className="card" onClick={() => handleViewStudent(student.studentId)}>
               <h3>{student.name}</h3>
               <p>{student.email}</p>
-              {localStorage.getItem('role') === 'Admin' ? (
+              {sessionStorage.getItem('role') === 'Admin' ? (
                 <div>
                   <button className='btn' onClick={() => handleEditStudent(student.studentId)}>Edit Student</button>
                   <button className='btn' onClick={() => handleDeleteStudent(student.studentId)}>Delete Student</button>

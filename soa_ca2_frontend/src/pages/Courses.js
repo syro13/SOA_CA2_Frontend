@@ -14,7 +14,7 @@ const Courses = () => {
   const getCourses = async () => {
     setLoading(true);
     try {
-      const response = await fetch('api/Courses', localStorage.getItem('authToken'));
+      const response = await fetch('api/Courses', sessionStorage.getItem('authToken'));
       setCourses(response);
     } catch (error) {
       setError('Error fetching courses');
@@ -26,7 +26,7 @@ const Courses = () => {
   const handleViewCourse = async (id) => {
     console.log('Viewing course:', id);
     try {
-      const response = await fetch(`api/Courses/${id}`, localStorage.getItem('authToken'));
+      const response = await fetch(`api/Courses/${id}`, sessionStorage.getItem('authToken'));
       setSelectedCourse(response);
       setModalIsOpen(true);
     } catch (error) {
@@ -56,7 +56,7 @@ const Courses = () => {
   const handleDeleteCourse = async (id) => {
     console.log('Deleting course:', id);
     try {
-      await fetchDelete(`api/Courses/${id}`, localStorage.getItem('authToken'));
+      await fetchDelete(`api/Courses/${id}`, sessionStorage.getItem('authToken'));
       getCourses();
     } catch (error) {
       console.error('Error deleting course:', error);
@@ -68,7 +68,7 @@ const Courses = () => {
     <div className="main-container">
         <div className='content-container'>
       <h1>Explore the Courses</h1>
-      {localStorage.getItem('role') === 'Admin' ? (
+      {sessionStorage.getItem('role') === 'Admin' ? (
               <button className='btn' onClick={handleAddCourse}>Add Course</button>
             ) : null
               }
@@ -80,7 +80,7 @@ const Courses = () => {
             <h3>{course.title}</h3>
             <p>{course.description}</p>
             <p><strong>Credits:</strong> {course.credits}</p>
-            {localStorage.getItem('role') === 'Admin' ? (
+            {sessionStorage.getItem('role') === 'Admin' ? (
               <><button className='btn' onClick={() => handleEditCourse(course.courseId)}>Edit Course</button><button className='btn' onClick={() => handleDeleteCourse(course.courseId)}>Delete Course</button></>
             ) : null
               }

@@ -10,7 +10,7 @@ function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = sessionStorage.getItem('authToken');
         if (token) {
             setIsLoggedIn(true);
         }
@@ -23,9 +23,9 @@ function Login() {
         try {
             const response = await fetchLogin('api/Auth/login', { username, password, role });
             if (response.token) {
-                localStorage.setItem('role', role);
-                localStorage.setItem('authToken', response.token);
-                localStorage.setItem('isLoggedIn', 'true'); // Save login state
+                sessionStorage.setItem('role', role);
+                sessionStorage.setItem('authToken', response.token);
+                sessionStorage.setItem('isLoggedIn', 'true'); // Save login state
                 setIsLoggedIn(true); // Update React state
                 console.log('Login successful:', response);
             } else {

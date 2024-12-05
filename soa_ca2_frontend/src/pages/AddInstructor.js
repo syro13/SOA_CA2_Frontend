@@ -8,7 +8,7 @@ function AddInstructor() {
     const handleAddInstructor = async (e) => {
         e.preventDefault();
         try {
-            await fetchAdd('api/Instructors?userId=1', localStorage.getItem('authToken'), { name, email});
+            await fetchAdd('api/Instructors?userId=1', sessionStorage.getItem('authToken'), { name, email});
             window.location.href = `/instructors`;
           } catch (error) {
             console.log('Error adding instructors:', error);

@@ -9,7 +9,7 @@ function AddCourse() {
     const handleAddCourse = async (e) => {
         e.preventDefault();
         try {
-            await fetchAdd('api/Courses', localStorage.getItem('authToken'), { title, description, credits });
+            await fetchAdd('api/Courses', sessionStorage.getItem('authToken'), { title, description, credits });
             window.location.href = `/courses`;
         } catch (error) {
             console.log('Error fetching courses:', error);

@@ -14,7 +14,7 @@ function Schedules() {
     const getSchedules = async () => {
         setLoading(true);
         try {
-            const response = await fetch('api/Schedules', localStorage.getItem('authToken'));
+            const response = await fetch('api/Schedules', sessionStorage.getItem('authToken'));
             setSchedules(response);
         } catch (error) {
             setError('Error fetching schedules');
@@ -26,7 +26,7 @@ function Schedules() {
     const getCourse = async (courseId) => {
         try {
             if (!courses[courseId]) {
-                const response = await fetch(`api/Courses/${courseId}`, localStorage.getItem('authToken'));
+                const response = await fetch(`api/Courses/${courseId}`, sessionStorage.getItem('authToken'));
                 setCourses((prevCourses) => ({ ...prevCourses, [courseId]: response }));
             }
         } catch (error) {
@@ -37,7 +37,7 @@ function Schedules() {
     const getInstructor = async (instructorId) => {
         try {
             if (!instructors[instructorId]) {
-                const response = await fetch(`api/Instructors/${instructorId}`, localStorage.getItem('authToken'));
+                const response = await fetch(`api/Instructors/${instructorId}`, sessionStorage.getItem('authToken'));
                 setInstructors((prevInstructors) => ({ ...prevInstructors, [instructorId]: response }));
             }
         } catch (error) {
@@ -51,7 +51,7 @@ function Schedules() {
 
     useEffect(() => {
         schedules.forEach((schedule) => getCourse(schedule.courseId));
-        if (localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === 'Instructor') {
+        if (sessionStorage.getItem('role') === 'Admin' || sessionStorage.getItem('role') === 'Instructor') {
             schedules.forEach((schedule) => getInstructor(schedule.instructorId));
         }
     });
@@ -66,7 +66,7 @@ function Schedules() {
 
     const handleDeleteSchedule = async (id) => {
         try {
-            await fetchDelete(`api/Schedules/${id}`, localStorage.getItem('authToken'));
+            await fetchDelete(`api/Schedules/${id}`, sessionStorage.getItem('authToken'));
             getSchedules();
         } catch (error) {
             console.error('Error deleting schedule:', error);
@@ -76,7 +76,7 @@ function Schedules() {
         <div className="main-container">
             <div className='content-container'>
                 <h1>Schedules</h1>
-                {localStorage.getItem('role') === 'Admin' ? (
+                {sessionStorage.getItem('role') === 'Admin' ? (
                     <button className='btn' onClick={handleAddSchedule}>Add Schedule</button>
                 ) : null}
                 {loading && <p>Loading...</p>}
@@ -84,18 +84,18 @@ function Schedules() {
                 <div className="cards-container">
                     {schedules.map((schedule) => (
                         <div key={schedule.scheduleId} className="card">
-                            {localStorage.getItem('role') === 'Admin' ? (
+                            {sessionStorage.getItem('role') === 'Admin' ? (
                                 <p>Schedule ID: {schedule.scheduleId}</p>
                             ) : null}
 
                             <p>Course Title: <strong>{courses[schedule.courseId]?.title || 'Loading course...'}</strong></p>
-                            {localStorage.getItem('role') === 'Admin' || localStorage.getItem('role') === "Instructor" ? (
+                            {sessionStorage.getItem('role') === 'Admin' || sessionStorage.getItem('role') === "Instructor" ? (
                                 <p>Instructor Name: {instructors[schedule.instructorId]?.name || 'Loading instructor...'}</p>
                             ) : null}
                             <p>Room number: {schedule.roomId}</p>
                             <p>Date: {schedule.date}</p>
                             <p>Time Slot: {schedule.timeSlot}</p>
-                            {localStorage.getItem('role') === 'Admin' ? (
+                            {sessionStorage.getItem('role') === 'Admin' ? (
                                     <><button className='btn' onClick={() => handleEditSchedule(schedule.scheduleId)}>Edit Schedule</button><button className='btn' onClick={() => handleDeleteSchedule(schedule.scheduleId)}>Delete Schedule</button></>
                             ) : null
                             }

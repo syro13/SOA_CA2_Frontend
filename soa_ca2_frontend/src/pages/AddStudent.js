@@ -8,7 +8,7 @@ function AddStudent() {
     const handleAddStudent = async (e) => {
         e.preventDefault();
         try {
-            await fetchAdd('api/Students?userId=1', localStorage.getItem('authToken'), { name, email });
+            await fetchAdd('api/Students?userId=1', sessionStorage.getItem('authToken'), { name, email });
             window.location.href = `/students`;
         } catch (error) {
             console.log('Error adding student:', error);
